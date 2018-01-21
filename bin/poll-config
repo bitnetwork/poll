@@ -1,3 +1,4 @@
 #!/bin/bash
 
-../admin.js
+DIR=`dirname $0`
+$DIR/../admin.js

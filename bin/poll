@@ -1,3 +1,4 @@
 #!/bin/bash
 
-../poll.js
+DIR=`dirname $0`
+$DIR/../poll.js
