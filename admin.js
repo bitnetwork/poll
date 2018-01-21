@@ -8,9 +8,7 @@ const readline = require("readline");
 let data = {};
 try {
   data = JSON.parse(fs.readFileSync(path.join(__dirname, "data.json")));
-} catch (error) {
-  
-}
+} catch (error) {}
 
 let input = readline.createInterface({
   input: process.stdin,
@@ -41,15 +39,18 @@ function createNew() {
 if (data.question === undefined || data.question === null) {
   console.log("No poll is active.\nCreate one?");
   input.question("y/n> ", function(answer) {
-    if (answer.toLowerCase() === "y") {
-      createNew();
+    if (answer.toLowerCase() !== "y") {
+      process.exit(0);
     }
+    createNew();
+      
   });
 } else {
   console.log(`The current poll is:\n${data.question}\nStop this and create a new one?`);
   input.question("y/n> ", function(answer) {
-    if (answer.toLowerCase() === "y") {
-      createNew();
+    if (answer.toLowerCase() !== "y") {
+      process.exit(0);
     }
+    createNew();
   });
 }
